@@ -30,33 +30,13 @@ songplay_id, start_time, user_id, level, song_id, artist_id, session_id, locatio
 
 
 
-## ETL Pipeline Details
+## ETL Pipeline Results
 
 
-### song_data ETL
+### song/artist ETL from song JSON data 
 
-#### Source dataset
-Each file is in JSON format and contains metadata about a song and the artist of that song. The files are partitioned by the first three letters of each song's track ID. For example, here are filepaths to two files in this dataset.
-
-`song_data/A/B/C/TRABCEI128F424C983.json
-song_data/A/A/B/TRAABJL12903CDCF1A.json
-`
-
-And below is an example of what a single song file, TRAABJL12903CDCF1A.json, looks like.
-```json
-{
-  "num_songs": 1,
-  "artist_id": "ARJIE2Y1187B994AB7",
-  "artist_latitude": null,
-  "artist_longitude": null,
-  "artist_location": "",
-  "artist_name": "Line Renaud",
-  "song_id": "SOUPIRU12A6D4FA1E1",
-  "title": "Der Kleine Dompfaff",
-  "duration": 152.92036,
-  "year": 0
-}
-```
+#### Select target columns; Use df.values to select just the values from the dataframe; Convert the array to a list and set it to data
+#### Implement the table_insert query in sql_queries.py and insert the song/artist record into the song/artist table
 
 #### Final tabes
 - songs table: Save song ID, title, artist ID, year, and duration from dataset
@@ -74,38 +54,8 @@ And below is an example of what a single song file, TRAABJL12903CDCF1A.json, loo
 | ARBEBBY1187B9B43DB | Tom Petty | Gainesville, FL | -         | -         |
 
 
-### log_data ETL
-
-#### Source dataset
-The log files in the dataset you'll be working with are partitioned by year and month. For example, here are filepaths to two files in this dataset.
-
-`log_data/2018/11/2018-11-12-events.json
-log_data/2018/11/2018-11-13-events.json
-`
-
-And below is an example of what the data in a log file, 2018-11-12-events.json, looks like.
-```json
-{
-  "artist": "Pavement",
-  "auth": "Logged In",
-  "firstName": "Sylvie",
-  "gender": "F",
-  "itemInSession": 0,
-  "lastName": "Cruz",
-  "length": 99.16036,
-  "level": "free",
-  "location": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-  "method": "PUT",
-  "page": "NextSong",
-  "registration": 1540266185796.0,
-  "sessionId": 345,
-  "song": "Mercy:The Laundromat",
-  "status": 200,
-  "ts": 1541990258796,
-  "userAgent": "\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.77.4 (KHTML, like Gecko) Version/7.0.5 Safari/537.77.4\"",
-  "userId": "10"
-}
-```
+### time/user ETL from log JSON data
+#### Filter records by NextSong action; Convert the ts timestamp column to datetime; Extract the timestamp, hour, day, week of year, month, year, and weekday from the ts column and set time_data to a list containing these values in order; Specify labels for these columns and set to column_labels; Create a dataframe, time_df, containing the time data for this file by combining column_labels and time_data into a dictionary and converting this into a dataframe
 
 #### Final tabes
 
@@ -124,6 +74,8 @@ And below is an example of what the data in a log file, 2018-11-12-events.json, 
 | 79      | James      | Martin    | M      | free  |
 | 52      | Theodore   | Smith     | M      | free  |
 
+### songplay ETL fron 
+#### Implement the `song_select` query in `sql_queries.py` to find the song ID and artist ID based on the title, artist name, and duration of a song; Select the timestamp, user ID, level, song ID, artist ID, session ID, location, and user agent and set to `songplay_data`; Implement the `songplay_table_insert` query and run the cell below to insert records for the songplay actions in this log file into the `songplays` table.
 
 - songplays table: Save the timestamp, user ID, level, song ID, artist ID, session ID, location, and user agent from dataset. The song ID and artist ID will be retrieved by querying the songs and artists tables to find matches based on song title, artist name, and song duration time.
 
