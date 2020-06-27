@@ -78,8 +78,8 @@ Implement the `song_select` query in `sql_queries.py` to find the song ID and ar
 
 - songplays table
 
-| songplay_id | start_time                 | user_id | level | song_id | artist_id | session_id | location                            | user_agent                                                                                                              |
-|-------------|----------------------------|---------|-------|---------|-----------|------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| 1           | 2018-11-29 00:00:57.796000 | 73      | paid  | -       | -         | 954        | Tampa-St. Petersburg-Clearwater, FL | "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.78.2 (KHTML, like Gecko) Version/7.0.6 Safari/537.78.2" |
-| 2           | 2018-11-29 00:01:30.796000 | 24      | paid  | -       | -         | 984        | Lake Havasu City-Kingman, AZ        | "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36"         |
+| songplay_id | start_time                 | user_id | level | song_id | artist_id | session_id | location                           | user_agent                                                                                                              |
+|-------------|----------------------------|---------|-------|---------|----------|----------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| 1           | 2018-11-29 00:00:57.796000 | 73      | paid  | -       | -        | 954      | Tampa-St. Petersburg-Clearwater, FL| "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.78.2 (KHTML, like Gecko) Version/7.0.6 Safari/537.78.2"|
+| 2           | 2018-11-29 00:01:30.796000 | 24      | paid  | -       | -        | 984       | Lake Havasu City-Kingman, AZ       | "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36"        |
 
