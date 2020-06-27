@@ -33,7 +33,7 @@ songplay_id, start_time, user_id, level, song_id, artist_id, session_id, locatio
 ## ETL Pipeline Results
 
 
-### song/artist ETL from song JSON data 
+### 1. song/artist ETL from song JSON data 
 
 Select target columns; Use df.values to select just the values from the dataframe; Convert the array to a list and set it to data; Implement the table_insert query in sql_queries.py and insert the song/artist record into the song/artist table
 
@@ -53,7 +53,7 @@ Select target columns; Use df.values to select just the values from the datafram
 | ARBEBBY1187B9B43DB | Tom Petty | Gainesville, FL | -         | -         |
 
 
-### time/user ETL from log JSON data
+### 2. time/user ETL from log JSON data
 Filter records by NextSong action; Convert the ts timestamp column to datetime; Extract the timestamp, hour, day, week of year, month, year, and weekday from the ts column and set time_data to a list containing these values in order; Specify labels for these columns and set to column_labels; Create a dataframe, time_df, containing the time data for this file by combining column_labels and time_data into a dictionary and converting this into a dataframe
 
 #### Final tabes
@@ -73,7 +73,7 @@ Filter records by NextSong action; Convert the ts timestamp column to datetime; 
 | 79      | James      | Martin    | M      | free  |
 | 52      | Theodore   | Smith     | M      | free  |
 
-### songplay ETL 
+### 3. songplay ETL 
 Implement the `song_select` query in `sql_queries.py` to find the song ID and artist ID based on the title, artist name, and duration of a song; Select the timestamp, user ID, level, song ID, artist ID, session ID, location, and user agent and set to `songplay_data`; Implement the `songplay_table_insert` query and run the cell below to insert records for the songplay actions in this log file into the `songplays` table.
 
 - songplays table
