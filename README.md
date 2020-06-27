@@ -37,7 +37,7 @@ songplay_id, start_time, user_id, level, song_id, artist_id, session_id, locatio
 
 Select target columns; Use df.values to select just the values from the dataframe; Convert the array to a list and set it to data; Implement the table_insert query in sql_queries.py and insert the song/artist record into the song/artist table
 
-#### Final tabes
+
 - songs table
 
 | song_id            | title                          | artist_id          | year | duration  |
@@ -56,7 +56,7 @@ Select target columns; Use df.values to select just the values from the datafram
 ### 2. time/user ETL from log JSON data
 Filter records by NextSong action; Convert the ts timestamp column to datetime; Extract the timestamp, hour, day, week of year, month, year, and weekday from the ts column and set time_data to a list containing these values in order; Specify labels for these columns and set to column_labels; Create a dataframe, time_df, containing the time data for this file by combining column_labels and time_data into a dictionary and converting this into a dataframe
 
-#### Final tabes
+
 
 - time table
 
