@@ -8,9 +8,9 @@ As a data engineer, I will conduct data modeling with Postgres and build an ETL 
 
 ## Python scripts
 
-- create_tables.py: Create the spartifydb database. Drop If it already exists. 
-- sql_queries.py: CREATE songplay, user, song, artist, time TABLES. Drop If it already exists. All queries used in the ETL pipeline.
-- etl.py: Read JSON log data and JSON song data, transform the datasets and upload the data into generated tables.
+- **create_tables.py**: Create the spartifydb database. Drop If it already exists. 
+- **sql_queries.py**: CREATE songplay, user, song, artist, time TABLES. Drop If it already exists. All queries used in the ETL pipeline.
+- **etl.py**: Read JSON log data and JSON song data, transform the datasets and upload the data into generated tables.
 
 ## Database Schema
 ### Dimension Tables
@@ -38,14 +38,14 @@ songplay_id, start_time, user_id, level, song_id, artist_id, session_id, locatio
 Select target columns; Use df.values to select just the values from the dataframe; Convert the array to a list and set it to data; Implement the table_insert query in sql_queries.py and insert the song/artist record into the song/artist table
 
 
-- songs table
+**songs table**
 
 | song_id            | title                          | artist_id          | year | duration  |
 |--------------------|--------------------------------|--------------------|------|-----------|
 | SOFNOQK12AB01840FC | Kutt Free (DJ Volume Remix)    | ARNNKDK1187B98BBD5 | -    | 407.37914 |
 | SOFFKZS12AB017F194 | A Higher Place (Album Version) | ARBEBBY1187B9B43DB | 1994 | 236.17261 |
 
-- artist table
+**artist table**
 
 | artist_id          | name      | location        | lattitude | longitude |
 |--------------------|-----------|-----------------|-----------|-----------|
@@ -58,7 +58,7 @@ Filter records by NextSong action; Convert the ts timestamp column to datetime; 
 
 
 
-- time table
+**time table**
 
 | start_time                 | hour | day | week | month | year | weekday |
 |----------------------------|------|-----|------|-------|------|---------|
@@ -66,7 +66,7 @@ Filter records by NextSong action; Convert the ts timestamp column to datetime; 
 | 2018-11-29 00:01:30.796000 | 0    | 29  | 48   | 11    | 2018 | 3       |
 
 
-- users table
+**users table**
 
 | user_id | first_name | last_name | gender | level |
 |---------|------------|-----------|--------|-------|
@@ -76,7 +76,7 @@ Filter records by NextSong action; Convert the ts timestamp column to datetime; 
 ### 3. songplay ETL 
 Implement the `song_select` query in `sql_queries.py` to find the song ID and artist ID based on the title, artist name, and duration of a song; Select the timestamp, user ID, level, song ID, artist ID, session ID, location, and user agent and set to `songplay_data`; Implement the `songplay_table_insert` query and run the cell below to insert records for the songplay actions in this log file into the `songplays` table.
 
-- songplays table
+**songplays table**
 
 | songplay_id | start_time                 | user_id | level | song_id | artist_id | session_id | location                           | user_agent                                                                                                              |
 |-------------|----------------------------|---------|-------|---------|----------|----------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
